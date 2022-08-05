@@ -8,6 +8,7 @@
     }
 
     button {
+        font-family: quicksand-bold;
         width: 250px;
         border: none;
         background-color: none;
@@ -20,10 +21,16 @@
 
     }
 
-    .new-account-btn {
+    .toggle-form-status-btn {
+        font-family: quicksand-regular;
+
         text-decoration: underline;
         background-color: transparent;
         padding: 5px;
         width: max-content;
+    }
+
+    .error-msg {
+        color: rgb(226, 20, 20)
     }
 }

@@ -5,7 +5,7 @@ export const UserPreview = ({ user }) => {
             <img src={user.imgUrl} alt="user-img" />
         </div>
         <div>
-            <p>{user.name}</p>
+            <h4>{user.name}</h4>
             <p>{user.email}</p>
         </div>
     </div>

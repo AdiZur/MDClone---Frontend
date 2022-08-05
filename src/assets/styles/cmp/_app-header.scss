@@ -1,25 +1,24 @@
 .app-header {
     margin-bottom: 15vh;
-    // box-shadow: inset -1px -1px rgb(190 190 190);
-    border-bottom: 1px solid black;
+    background-color: $clr1;
 
     nav a {
         text-align: center;
         width: 100px;
         padding: 1.5em 0;
-        border-inline-end: 1px solid black;
+        border-inline-end: 1px solid rgba(0, 0, 0, 0.132);
         cursor: pointer;
 
         &:first-of-type {
-            border-inline-start: 1px solid black;
+            border-inline-start: 1px solid rgba(0, 0, 0, 0.132);
         }
 
         &:hover:not(.active) {
-            box-shadow: 0px 2px grey;
+            box-shadow: inset 0px -2px 0px 0px #b4c3c3;
         }
 
         &.active {
-            background-color: lightgrey;
+            background-color: rgb(230, 229, 229)
         }
     }
 }
