@@ -1,0 +1,16 @@
+.main-layout {
+    display: grid;
+    grid-template-columns: $layoutPadding 1fr $layoutPadding;
+
+    >* {
+        grid-column: 2;
+    }
+
+    >*.full {
+        grid-column: 1 / -1;
+    }
+
+    &.App {
+        min-height: 100vh
+    }
+}

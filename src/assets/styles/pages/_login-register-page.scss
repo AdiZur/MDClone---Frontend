@@ -1,0 +1,29 @@
+.login-register-page {
+    margin: auto;
+    width: 50vw;
+
+    form {
+        width: 60%;
+        margin: auto;
+    }
+
+    button {
+        width: 250px;
+        border: none;
+        background-color: none;
+        padding: 8px;
+    }
+
+    input {
+        margin-bottom: 15px;
+        width: 250px;
+
+    }
+
+    .new-account-btn {
+        text-decoration: underline;
+        background-color: transparent;
+        padding: 5px;
+        width: max-content;
+    }
+}
