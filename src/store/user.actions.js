@@ -1,15 +1,16 @@
 import { userService } from "../services/user.service"
 
 export function login(credentials) {
-    console.log('credentials', credentials)
     return async (dispatch) => {
         try {
             const user = await userService.login(credentials)
+            console.log('user action', user)
             dispatch({
                 type: 'SET_USER',
                 user
             })
         } catch (err) {
+            console.log('Cannot login', err)
             throw err
         }
     }
@@ -29,7 +30,7 @@ export function logOut() {
     }
 }
 
-export function onRegister(credentials) {
+export function register(credentials) {
     return async (dispatch) => {
         try {
             const user = await userService.register(credentials)
@@ -38,7 +39,8 @@ export function onRegister(credentials) {
                 user
             })
         } catch (err) {
-            console.log('Cannot signup', err)
+            console.log('Cannot register', err)
+            throw err
         }
 
     }
@@ -48,7 +50,10 @@ export function loadUser() {
     return async dispatch => {
         try {
             const user = await userService.getLoggedinUser()
-            dispatch({ type: 'SET_USER', user })
+            dispatch({
+                type: 'SET_USER',
+                user
+            })
         } catch (err) {
             console.log('UserAction: err in loadUser', err)
         }

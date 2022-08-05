@@ -1,30 +1,54 @@
+import { useEffect } from "react"
 import { useState } from "react"
-import { useDispatch } from "react-redux"
-import { userService } from "../services/user.service"
-import { login } from "../store/user.actions"
+import { useDispatch, useSelector } from "react-redux"
+import { login, register } from "../store/user.actions"
 
 export const LoginRegisterPage = ({ history }) => {
 
     const [credentials, setCredentials] = useState({ name: '', email: '', password: '' })
     const [isRegister, setIsRegister] = useState(false)
+    const [errorMsg, setErrorMsg] = useState('')
+    const { user } = useSelector(storeState => storeState.userModule)
+
     const dispatch = useDispatch()
+
+    useEffect(() => {
+
+    }, [user])
 
     const onLogin = async (ev) => {
         ev.preventDefault()
         const { email, password } = credentials
         console.log('Login', email, password)
-        dispatch(login({ email, password }))
-        history.push('/')
-    }
-
-    const onRegister = async (ev) => {
+        if (!email || !password) return
         try {
-            ev.preventDefault()
-            console.log('Register', credentials)
-            userService.register(credentials)
+            await dispatch(login({ email, password }))
             history.push('/')
         } catch (err) {
-            console.log(err)
+            console.log('Cannot login', err)
+            setErrorMsg('Invalid email or password')
+        }
+    }
+
+    // const onLogin = async (ev) => {
+    //     ev.preventDefault()
+    //     const { email, password } = credentials
+    //     console.log('Login', email, password)
+    //     if (!email || !password) return
+    //     const approval = await dispatch(login({ email, password }))
+    //     if (!approval) setErrorMsg('Invalid email or password')
+
+    // }
+
+    const onRegister = async (ev) => {
+        ev.preventDefault()
+        try {
+            console.log('Register', credentials)
+            await dispatch(register(credentials))
+            history.push('/')
+        } catch (err) {
+            console.log('Cannot register', err)
+            setErrorMsg('Cannot register, Email is already in use')
         }
     }
 
@@ -45,6 +69,7 @@ export const LoginRegisterPage = ({ history }) => {
                 {isRegister && <input type="text" name="name" value={credentials.name} onChange={handleChange} placeholder="Name" required></input>}
                 <input type="email" name="email" value={credentials.email} onChange={handleChange} placeholder="Email" required></input>
                 <input type="password" name="password" value={credentials.password} onChange={handleChange} placeholder="Password" autoComplete="off" required></input>
+                <h5 className="error-msg">{errorMsg}</h5>
                 <button>{isRegister ? 'Register' : 'Login'}</button>
             </form>
             <div className="flex justify-center">
