@@ -1,6 +1,16 @@
 .user-preview {
     box-shadow: 1px 0px 3px 0px #bdbdbd6b;
     padding: 10px;
-    border-radius: 7px;
-    height: 100px;
+    background-color: #F0F6F6;
+    padding: 25px 0px;
+    border-radius: 16px;
+    text-align: center;
+
+    .user-img {
+        img {
+            height: 120px;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+    }
 }

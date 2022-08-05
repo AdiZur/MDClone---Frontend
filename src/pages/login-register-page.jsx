@@ -1,6 +1,5 @@
-import { useEffect } from "react"
 import { useState } from "react"
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch } from "react-redux"
 import { login, register } from "../store/user.actions"
 
 export const LoginRegisterPage = ({ history }) => {
@@ -8,13 +7,8 @@ export const LoginRegisterPage = ({ history }) => {
     const [credentials, setCredentials] = useState({ name: '', email: '', password: '' })
     const [isRegister, setIsRegister] = useState(false)
     const [errorMsg, setErrorMsg] = useState('')
-    const { user } = useSelector(storeState => storeState.userModule)
 
     const dispatch = useDispatch()
-
-    useEffect(() => {
-
-    }, [user])
 
     const onLogin = async (ev) => {
         ev.preventDefault()
@@ -52,7 +46,7 @@ export const LoginRegisterPage = ({ history }) => {
         }
     }
 
-    const onToggleForm = () => {
+    const onToggleFormStatus = () => {
         setIsRegister(!isRegister)
     }
 
@@ -74,7 +68,7 @@ export const LoginRegisterPage = ({ history }) => {
             </form>
             <div className="flex justify-center">
                 {!isRegister && <h4>Don't have an account?</h4>}
-                <button className="new-account-btn" onClick={onToggleForm}>{isRegister ? 'Back to Login' : 'Register'}</button>
+                <button className="new-account-btn" onClick={onToggleFormStatus}>{isRegister ? 'Back to Login' : 'Register'}</button>
             </div>
         </div>
     </div>
