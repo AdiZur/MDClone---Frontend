@@ -33,6 +33,7 @@ async function update(user) {
 }
 
 async function login(userCred) {
+    console.log('userCred', userCred)
     const user = await httpService.post('auth/login', userCred)
     return saveLocalUser(user)
 }

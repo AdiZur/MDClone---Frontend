@@ -1,31 +1,27 @@
 import { useState } from "react"
-import { eventBusService } from "../services/event-bus.service"
+import { useDispatch } from "react-redux"
 import { userService } from "../services/user.service"
+import { login } from "../store/user.actions"
 
 export const LoginRegisterPage = ({ history }) => {
 
     const [credentials, setCredentials] = useState({ name: '', email: '', password: '' })
     const [isRegister, setIsRegister] = useState(false)
+    const dispatch = useDispatch()
 
     const onLogin = async (ev) => {
-        try {
-            ev.preventDefault()
-            const { email, password } = credentials
-            console.log('Login', email, password)
-            let user = await userService.login({ email, password })
-            eventBusService.emit('login', user)
-            history.push('/')
-        } catch (err) {
-            console.log(err)
-        }
+        ev.preventDefault()
+        const { email, password } = credentials
+        console.log('Login', email, password)
+        dispatch(login({ email, password }))
+        history.push('/')
     }
 
     const onRegister = async (ev) => {
         try {
             ev.preventDefault()
             console.log('Register', credentials)
-            let user = await userService.register(credentials)
-            eventBusService.emit('login', user)
+            userService.register(credentials)
             history.push('/')
         } catch (err) {
             console.log(err)
@@ -48,7 +44,7 @@ export const LoginRegisterPage = ({ history }) => {
                 <h2>{isRegister ? 'Register' : 'Login'}</h2>
                 {isRegister && <input type="text" name="name" value={credentials.name} onChange={handleChange} placeholder="Name" required></input>}
                 <input type="email" name="email" value={credentials.email} onChange={handleChange} placeholder="Email" required></input>
-                <input type="password" name="password" value={credentials.password} onChange={handleChange} placeholder="Password" required></input>
+                <input type="password" name="password" value={credentials.password} onChange={handleChange} placeholder="Password" autoComplete="off" required></input>
                 <button>{isRegister ? 'Register' : 'Login'}</button>
             </form>
             <div className="flex justify-center">

@@ -1,48 +1,25 @@
-import { useEffect, useState } from "react"
+import { useDispatch } from "react-redux"
+import { useSelector } from "react-redux"
 import { NavLink } from "react-router-dom"
-import { eventBusService } from "../services/event-bus.service"
-import { userService } from "../services/user.service"
+import { logOut } from "../store/user.actions"
 
 export const AppHeader = () => {
 
-    const [loggedinUser, setLoggedinUser] = useState(userService.getLoggedinUser())
-
-    let removeLoginEvent
-
-    useEffect(() => {
-        if (removeLoginEvent) removeLoginEvent()
-        eventBusService.on('login', () => loadUser)
-        return () => {
-            removeLoginEvent()
-        }
-    }, [])
-
-    const loadUser = () => {
-        setLoggedinUser(userService.getLoggedinUser())
-    }
-
-    // useEffect(() => {
-    //     if (removeLoginEvent) this.removeLoginEvent()
-    //     eventBusService.on('login', (user) => loadUser(user))
-    // }, [])
-
-    // const loadUser = (user) => {
-    //     setLoggedinUser(user)
-    // }
-
+    const { user } = useSelector(storeState => storeState.userModule)
+    const dispatch = useDispatch()
     const onLogout = () => {
-
+        dispatch(logOut())
     }
 
     return <section className="app-header full">
         <div className="header-content main-layout">
             <main className="flex space-between align-center">
                 <NavLink to="/"><h1>MDClone Challenge</h1></NavLink>
-                {loggedinUser && <h3>Hello, {loggedinUser.name}</h3>}
+                {user && <h3>Hello, {user.name}</h3>}
                 <nav className="flex">
                     <NavLink to="/user">Users</NavLink>
-                    {loggedinUser ?
-                        <p onClick={onLogout}>Logout</p>
+                    {user ?
+                        <a onClick={onLogout}>Logout</a>
                         :
                         <NavLink to="/login">Login</NavLink>}
                 </nav>

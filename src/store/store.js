@@ -9,7 +9,7 @@ import { userReducer } from './user.reducer.js'
 
 
 const rootReducer = combineReducers({
-    taskModule: userReducer,
+    userModule: userReducer,
 })
 
 

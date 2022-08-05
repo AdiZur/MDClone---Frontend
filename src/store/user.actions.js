@@ -1,92 +1,68 @@
+import { userService } from "../services/user.service"
 
+export function login(credentials) {
+    console.log('credentials', credentials)
+    return async (dispatch) => {
+        try {
+            const user = await userService.login(credentials)
+            dispatch({
+                type: 'SET_USER',
+                user
+            })
+        } catch (err) {
+            throw err
+        }
+    }
+}
 
-// // Action Creators:
-// export function getActionRemoveTask(taskId) {
-//     return {
-//         type: 'REMOVE_TASK',
-//         taskId
-//     }
-// }
-// export function getActionAddTask(task) {
-//     return {
-//         type: 'ADD_TASK',
-//         task
-//     }
-// }
-// export function getActionUpdateTask(task) {
-//     return {
-//         type: 'UPDATE_TASK',
-//         task
-//     }
-// }
+export function logOut() {
+    return async (dispatch) => {
+        try {
+            await userService.logout()
+            dispatch({
+                type: 'SET_USER',
+                user: null
+            })
+        } catch (err) {
+            console.log('Cannot logout', err)
+        }
+    }
+}
 
+export function onRegister(credentials) {
+    return async (dispatch) => {
+        try {
+            const user = await userService.register(credentials)
+            dispatch({
+                type: 'SET_USER',
+                user
+            })
+        } catch (err) {
+            console.log('Cannot signup', err)
+        }
 
-// export function loadTasks() {
-//     return (dispatch) => {
-//         taskService.query()
-//             .then(tasks => {
-//                 console.log('Tasks from DB:', tasks)
-//                 dispatch({
-//                     type: 'SET_TASKS',
-//                     tasks
-//                 })
-//             })
-//             .catch(err => {
-//                 showErrorMsg('Cannot load tasks')
-//                 console.log('Cannot load tasks', err)
-//             })
+    }
+}
 
-     
-//     }
-// }
+export function loadUser() {
+    return async dispatch => {
+        try {
+            const user = await userService.getLoggedinUser()
+            dispatch({ type: 'SET_USER', user })
+        } catch (err) {
+            console.log('UserAction: err in loadUser', err)
+        }
+    }
+}
 
-// export function removeTask(taskId) {
-//     return async (dispatch) => {
+// export function updateUser(user) {
+//     return async dispatch => {
 //         try {
-//             await taskService.remove(taskId)
-//             console.log('Deleted Succesfully!');
-//             dispatch(getActionRemoveTask(taskId))
-//             showSuccessMsg('Task removed')
+//             const updatedUser = await userService.update(user)
+//             dispatch({ type: 'UPDATE_USER_WISHLIST', user: updatedUser })
 //         } catch (err) {
-//             showErrorMsg('Cannot remove task')
-//             console.log('Cannot remove task', err)
+//             console.log('UserAction: err in update user', err)
+
 //         }
 //     }
 // }
-
-// export function addTask(task) {
-//     return (dispatch) => {
-
-//         taskService.save(task)
-//             .then(savedTask => {
-//                 console.log('Added Task', savedTask);
-//                 dispatch(getActionAddTask(savedTask))
-//                 showSuccessMsg('Task added')
-//             })
-//             .catch(err => {
-//                 showErrorMsg('Cannot add task')
-//                 console.log('Cannot add task', err)
-//             })
-//     }
-// }
-
-// export function updateTask(task) {
-//     return (dispatch) => {
-//         taskService.save(task)
-//             .then(savedTask => {
-//                 console.log('Updated Task:', savedTask);
-//                 dispatch(getActionUpdateTask(savedTask))
-//                 showSuccessMsg('Task updated')
-//             })
-//             .catch(err => {
-//                 showErrorMsg('Cannot update task')
-//                 console.log('Cannot save task', err)
-//             })
-//     }
-// }
-
-
-
-
-
-
