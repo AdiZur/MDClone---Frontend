@@ -42,7 +42,7 @@ export const LoginRegisterPage = ({ history }) => {
             history.push('/')
         } catch (err) {
             console.log('Cannot register', err)
-            setErrorMsg('Cannot register, Email is already in use')
+            setErrorMsg('Cannot register', { err })
         }
     }
 
