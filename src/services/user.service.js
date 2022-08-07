@@ -8,11 +8,16 @@ export const userService = {
     register,
     getLoggedinUser,
     saveLocalUser,
-    getUsers
+    getUsers,
+    getById
 }
 
 function getUsers() {
     return httpService.get(`user`)
+}
+
+async function getById(userId) {
+    return await httpService.get(`user/${userId}`, userId)
 }
 
 async function login(userCred) {
