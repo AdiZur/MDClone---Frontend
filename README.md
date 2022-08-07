@@ -1,10 +1,1 @@
-Built With:
-React
-
-Getting Started:
-frontend+backend:
-npm install
-npm start
-
-Description:
-Web application to manage users.
+[README-Template.md](https://github.com/AdiZur/MDClone-Frontend/files/9277325/README-Template.md)
