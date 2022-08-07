@@ -24,16 +24,6 @@ export const LoginRegisterPage = ({ history }) => {
         }
     }
 
-    // const onLogin = async (ev) => {
-    //     ev.preventDefault()
-    //     const { email, password } = credentials
-    //     console.log('Login', email, password)
-    //     if (!email || !password) return
-    //     const approval = await dispatch(login({ email, password }))
-    //     if (!approval) setErrorMsg('Invalid email or password')
-
-    // }
-
     const onRegister = async (ev) => {
         ev.preventDefault()
         try {

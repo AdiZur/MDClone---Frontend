@@ -8,29 +8,12 @@ export const userService = {
     register,
     getLoggedinUser,
     saveLocalUser,
-    getUsers,
-    // getById,
-    // remove,
-    // update
+    getUsers
 }
 
 function getUsers() {
     return httpService.get(`user`)
 }
-
-// async function getById(userId) {
-//     return await httpService.get('user', userId)
-// }
-
-// function remove(userId) {
-//     return httpService.delete(`user/${userId}`)
-// }
-
-// async function update(user) {
-//     user = await httpService.put(`user/${user._id}`, user)
-//     if (getLoggedinUser()._id === user._id) saveLocalUser(user)
-//     return user;
-// }
 
 async function login(userCred) {
     const user = await httpService.post('auth/login', userCred)

@@ -59,15 +59,3 @@ export function loadUser() {
         }
     }
 }
-
-// export function updateUser(user) {
-//     return async dispatch => {
-//         try {
-//             const updatedUser = await userService.update(user)
-//             dispatch({ type: 'UPDATE_USER_WISHLIST', user: updatedUser })
-//         } catch (err) {
-//             console.log('UserAction: err in update user', err)
-
-//         }
-//     }
-// }
