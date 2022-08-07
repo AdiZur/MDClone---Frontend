@@ -1,6 +1,11 @@
 .app-header {
-    margin-bottom: 10vh;
+    margin-bottom: 5vh;
     background-color: $clr1;
+
+    .logo,
+    h4 {
+        margin: 0;
+    }
 
     nav a {
         text-align: center;

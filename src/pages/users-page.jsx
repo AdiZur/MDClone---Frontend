@@ -21,6 +21,7 @@ export const UsersPage = () => {
     }
 
     if (!users) return <div>Loading...</div>
+    if (!users.length) return <div>There is no registred users</div>
     return <div className="users-page">
         <UsersList users={users} />
     </div>

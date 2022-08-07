@@ -15,7 +15,7 @@ export const AppHeader = () => {
         <div className="header-content main-layout">
             <main className="flex space-between align-center">
                 <NavLink to="/"><h1 className="logo">MDClone Challenge</h1></NavLink>
-                {user && <h3>Hello, {user.name}</h3>}
+                {user && <h4>Hello, {user.name}</h4>}
                 <nav className="flex">
                     <NavLink to="/user">Users</NavLink>
                     {user ?

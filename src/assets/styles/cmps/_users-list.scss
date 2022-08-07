@@ -4,4 +4,10 @@
     grid-column-gap: 24px;
     grid-row-gap: 40px;
     margin-bottom: 30px;
+    margin-top: 7vh;
+
+
+    @include for-mobile-layout {
+        margin-top: 2vh;
+    }
 }
