@@ -1,0 +1,12 @@
+/* Breakpoint mixins */
+
+@mixin for-mobile-layout {
+    @media (max-width: $mobile-breakpoint ) {
+        @content;
+    }
+}
+
+@mixin layoutGTC($max , $padding: $layoutPadding) {
+    grid-template-columns:
+        minmax($padding, 1fr) minmax(auto, $max) minmax($padding, 1fr);
+}

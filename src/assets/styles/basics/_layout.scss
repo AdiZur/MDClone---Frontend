@@ -13,4 +13,8 @@
     &.App {
         min-height: 100vh
     }
+
+    @include for-mobile-layout {
+        @include layoutGTC($mobile-breakpoint, $mobilePadding);
+    }
 }

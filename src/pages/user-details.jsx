@@ -22,7 +22,7 @@ export const UserDetails = ({ history }) => {
     const goBack = () => {
         history.push('/user')
     }
-    return <React.Fragment>
+    return <div className="user-details-page-container">
         <div className="user-details-page flex">
             <div className="img-container">
                 <img src={user.imgUrl} />
@@ -34,5 +34,5 @@ export const UserDetails = ({ history }) => {
         </div>
         <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsum recusandae est fugit dignissimos quidem nesciunt assumenda iusto perspiciatis dolore praesentium ipsam magni officia doloribus, hic expedita eveniet iste! A, obcaecati.</p>
         <button className="go-back-btn" onClick={goBack}>Go Back</button>
-    </React.Fragment>
+    </div>
 }
