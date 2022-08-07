@@ -1,1 +1,18 @@
-[README-Template.md](https://github.com/AdiZur/MDClone-Frontend/files/9277325/README-Template.md)
+# Project Title
+
+MDClone Challenge
+
+## Built with
+React
+
+## Description
+
+Web application to manage users
+## Getting Started
+### Executing program
+
+Frontend+ Backend:
+npm install
+npm start
+
+
